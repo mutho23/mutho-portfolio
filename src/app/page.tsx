@@ -9,12 +9,8 @@ import {
   Row,
   Schema,
   Meta,
-  Line,
 } from "@once-ui-system/core";
-import { home, about, person, baseURL, routes } from "@/resources";
-import { Mailchimp } from "@/components";
-import { Projects } from "@/components/work/Projects";
-import { Posts } from "@/components/blog/Posts";
+import { home, about, person, baseURL } from "@/resources";
 
 export async function generateMetadata() {
   return Meta.generate({
@@ -28,7 +24,12 @@ export async function generateMetadata() {
 
 export default function Home() {
   return (
-    <Column maxWidth="m" gap="xl" paddingY="12" horizontal="center">
+    <Column 
+      maxWidth="m" 
+      paddingY="12" 
+      horizontal="center"
+      style={{ minHeight: 'calc(100vh - 160px)', justifyContent: 'center' }} // Membuat konten rata tengah vertikal & pas satu layar
+    >
       <Schema
         as="webPage"
         baseURL={baseURL}
@@ -42,6 +43,7 @@ export default function Home() {
           image: `${baseURL}${person.avatar}`,
         }}
       />
+      
       <Column fillWidth horizontal="center" gap="m">
         <Column maxWidth="s" horizontal="center" align="center">
           {home.featured.display && (
@@ -65,16 +67,19 @@ export default function Home() {
               </Badge>
             </RevealFx>
           )}
+          
           <RevealFx translateY="4" fillWidth horizontal="center" paddingBottom="16">
             <Heading wrap="balance" variant="display-strong-l">
               {home.headline}
             </Heading>
           </RevealFx>
+          
           <RevealFx translateY="8" delay={0.2} fillWidth horizontal="center" paddingBottom="32">
             <Text wrap="balance" onBackground="neutral-weak" variant="heading-default-xl">
               {home.subline}
             </Text>
           </RevealFx>
+          
           <RevealFx paddingTop="12" delay={0.4} horizontal="center" paddingLeft="12">
             <Button
               id="about"
@@ -100,31 +105,6 @@ export default function Home() {
           </RevealFx>
         </Column>
       </Column>
-      <RevealFx translateY="16" delay={0.6}>
-        <Projects range={[1, 1]} />
-      </RevealFx>
-      {routes["/blog"] && (
-        <Column fillWidth gap="24" marginBottom="l">
-          <Row fillWidth paddingRight="64">
-            <Line maxWidth={48} />
-          </Row>
-          <Row fillWidth gap="24" marginTop="40" s={{ direction: "column" }}>
-            <Row flex={1} paddingLeft="l" paddingTop="24">
-              <Heading as="h2" variant="display-strong-xs" wrap="balance">
-                Latest from the blog
-              </Heading>
-            </Row>
-            <Row flex={3} paddingX="20">
-              <Posts range={[1, 2]} columns="2" />
-            </Row>
-          </Row>
-          <Row fillWidth paddingLeft="64" horizontal="end">
-            <Line maxWidth={48} />
-          </Row>
-        </Column>
-      )}
-      <Projects range={[2]} />
-      <Mailchimp />
     </Column>
   );
 }
