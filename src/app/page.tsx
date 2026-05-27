@@ -24,11 +24,16 @@ export async function generateMetadata() {
 
 export default function Home() {
   return (
-    <Column 
+   <Column 
       maxWidth="m" 
       paddingY="12" 
       horizontal="center"
-      style={{ minHeight: 'calc(100vh - 160px)', justifyContent: 'center' }} // Membuat konten rata tengah vertikal & pas satu layar
+      style={{ 
+        height: '100vh',          // Mengunci tinggi tepat 100% dari tinggi layar
+        maxHeight: '100vh',       // Memastikan tidak bisa molor lebih dari layar
+        overflow: 'hidden',       // Memotong dan mematikan fungsi scroll di dalam komponen ini
+        justifyContent: 'center'  // Menjaga konten tetap presisi di tengah vertikal
+      }}
     >
       <Schema
         as="webPage"
