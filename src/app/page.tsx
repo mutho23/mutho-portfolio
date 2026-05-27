@@ -38,6 +38,7 @@ export default function Home() {
         top: 0,
         left: 0,
         width: '100vw',
+        touchAction: 'none', // TRIK UTAMA: Mematikan total semua interaksi scroll/goyang di HP & Trackpad
       }}
     >
       {/* 1. SEO & Metadata Schema */}
@@ -55,7 +56,7 @@ export default function Home() {
         }}
       />
 
-      {/* 2. Background Efek Efek Visual (Grid, Dots, Lines) */}
+      {/* 2. Background Efek Visual */}
       <RevealFx fill position="absolute" style={{ zIndex: -1 }}>
         <Background
           mask={{
@@ -103,7 +104,7 @@ export default function Home() {
       <Flex fillWidth minHeight="16" s={{ hide: true }} />
       <Header />
 
-      {/* 4. Konten Utama Portfolio (Pas di Tengah Layar Vertikal & Horizontal) */}
+      {/* 4. Konten Utama Portfolio */}
       <Flex zIndex={0} fillWidth padding="l" horizontal="center" flex={1} style={{ alignItems: 'center' }}>
         <Column maxWidth="m" paddingY="12" horizontal="center" style={{ justifyContent: 'center', width: '100%' }}>
           <Column fillWidth horizontal="center" gap="m">
@@ -158,20 +159,3 @@ export default function Home() {
                         style={{ marginLeft: "-0.75rem" }}
                         src={person.avatar}
                         size="m"
-                      />
-                    )}
-                    {about.title}
-                  </Row>
-                </Button>
-              </RevealFx>
-
-            </Column>
-          </Column>
-        </Column>
-      </Flex>
-
-      {/* 5. Footer Bawah */}
-      <Footer />
-    </Column>
-  );
-}
